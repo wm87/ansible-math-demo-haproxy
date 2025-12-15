@@ -1,0 +1,28 @@
+---
+- name: Ensure webserver directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - "{{ ansible_env.HOME }}/ansible-math-demo/www/web1"
+    - "{{ ansible_env.HOME }}/ansible-math-demo/www/web2"
+    - "{{ ansible_env.HOME }}/ansible-math-demo/www/web3"
+    - "{{ ansible_env.HOME }}/ansible-math-demo/bin"
+
+- name: Copy number generator script
+  copy:
+    src: generate_numbers.py
+    dest: "{{ ansible_env.HOME }}/ansible-math-demo/bin/generate_numbers.py"
+    mode: '0755'
+
+- name: Generate dynamic numbers
+  command: "{{ ansible_env.HOME }}/ansible-math-demo/bin/generate_numbers.py {{ inventory_hostname }}"
+  register: numbers_output
+
+- name: Deploy HTML page
+  template:
+    src: index.html.j2
+    dest: "{{ ansible_env.HOME }}/ansible-math-demo/www/{{ inventory_hostname }}/index.html"
+  vars:
+    numbers: "{{ numbers_output.stdout }}"

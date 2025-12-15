@@ -1,0 +1,9 @@
+webservers:
+  web1:
+    port: 8001
+  web2:
+    port: 8002
+  web3:
+    port: 8003
+
+lb_port: 8000

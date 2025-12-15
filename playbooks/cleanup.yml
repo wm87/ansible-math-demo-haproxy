@@ -1,0 +1,21 @@
+---
+- hosts: webservers
+  become: false
+  tasks:
+    - name: Remove generated HTML
+      file:
+        path: "{{ ansible_env.HOME }}/ansible-math-demo/www/{{ inventory_hostname }}/index.html"
+        state: absent
+
+    - name: Remove Python script
+      file:
+        path: {{ ansible_env.HOME }}/ansible-math-demo/bin/generate_numbers.py
+        state: absent
+
+- hosts: loadbalancer
+  become: false
+  tasks:
+    - name: Remove HAProxy config
+      file:
+        path: {{ ansible_env.HOME }}/ansible-math-demo/etc/haproxy.cfg
+        state: absent

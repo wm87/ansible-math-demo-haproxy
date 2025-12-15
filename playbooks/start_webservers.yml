@@ -1,0 +1,11 @@
+---
+- hosts: webservers
+  tasks:
+    - name: Start Python HTTP Server in Hintergrund
+      shell: >
+        nohup python3 -m http.server {{ hostvars[inventory_hostname][inventory_hostname + '_port'] }}
+        --directory {{ ansible_env.HOME }}/ansible-math-demo/www/{{ inventory_hostname }} > {{ ansible_env.HOME }}/ansible-math-demo/{{ inventory_hostname }}.log 2>&1 &
+      args:
+        executable: /bin/bash
+      async: 0
+      poll: 0

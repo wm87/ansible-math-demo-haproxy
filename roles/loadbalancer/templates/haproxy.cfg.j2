@@ -1,0 +1,19 @@
+global
+    maxconn 4096
+    daemon
+
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend http_front
+    bind *:{{ lb_port }}
+    default_backend webservers
+
+backend webservers
+    balance roundrobin
+    server web1 127.0.0.1:{{ hostvars['web1']['web1_port'] }} check
+    server web2 127.0.0.1:{{ hostvars['web2']['web2_port'] }} check
+    server web3 127.0.0.1:{{ hostvars['web3']['web3_port'] }} check

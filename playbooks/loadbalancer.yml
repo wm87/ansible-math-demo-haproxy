@@ -1,0 +1,7 @@
+---
+- hosts: loadbalancer
+  vars_files:
+    - ../group_vars/all.yml
+  become: false
+  roles:
+    - loadbalancer
