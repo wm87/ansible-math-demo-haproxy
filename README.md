@@ -1,4 +1,4 @@
-[![Ansible](https://img.shields.io/badge/Ansible-2.9+-blue)](https://www.ansible.com/)
+[![Ansible](https://img.shields.io/badge/Ansible-automation-informational?style=flat\&logo=ansible\&logoColor=white)](https://www.ansible.com/)
 [![HAProxy](https://img.shields.io/badge/HAProxy-latest-blue?logo=haproxy)](http://www.haproxy.org/)
 [![Python](https://img.shields.io/badge/Python-3.x-yellow)](https://www.python.org/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
